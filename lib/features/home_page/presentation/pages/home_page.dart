@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:poisk_raboty/core/widgets/custom_sized_box.dart';
 import 'package:poisk_raboty/features/home_page/presentation/cubit/home_page_cubit.dart';
 
 import '../../../../setup.dart';
 import '../cubit/home_page_state.dart';
+import '../widgets/vacancy_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,12 +18,14 @@ class _HomePageState extends State<HomePage> {
   final cubit = getIt<HomePageCubit>();
 
   @override
+  void initState() {
+    cubit.fetchVacancies();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
-      ),
       body: BlocBuilder<HomePageCubit, HomePageState>(
           bloc: cubit,
           builder: (context, state) {
@@ -30,15 +34,15 @@ class _HomePageState extends State<HomePage> {
                 child: CircularProgressIndicator(),
               );
             } else if (state is VacanciesLoadedState) {
-              return ListView.builder(
+              return ListView.separated(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 25),
                   itemCount: state.vacancies.length,
-                  itemBuilder: (context, index) => ListTile(
-                        title: Text(
-                          state.vacancies[index].title,
-                        ),
-                        subtitle: Text(
-                          state.vacancies[index].salary.toString(),
-                        ),
+                  separatorBuilder: (context, index) => const CustomSizedBox(
+                        height: 8,
+                      ),
+                  itemBuilder: (context, index) => VacancyCard(
+                        vacancy: state.vacancies[index],
                       ));
             } else {
               return const Center(
