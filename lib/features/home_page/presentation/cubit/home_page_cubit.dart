@@ -14,17 +14,25 @@ class HomePageCubit extends Cubit<HomePageState> {
   ) : super(HomeInitital());
 
   int page = 0;
-
+  int limit = 20;
+  bool isLastPage = false;
+  bool isLoading = false;
   List<VacancyEntity> oldVacancies = [];
 
-  void fetchVacancies() async {
-    final response = await useCase.call();
-    response.fold((error) => emit(const ErrorState(errorMessage: "error")),
-        (vacancies) {
-      emit(VacanciesLoadedState(
-          vacancies: List<VacancyEntity>.from(oldVacancies)
-            ..addAll(vacancies)));
-      oldVacancies.addAll(vacancies);
-    });
+  Future<void> fetchVacancies() async {
+    if (!isLastPage && !isLoading) {
+      isLoading = true;
+      final response = await useCase.call();
+      response.fold((error) => emit(const ErrorState(errorMessage: "error")),
+          (vacancies) {
+        emit(VacanciesLoadedState(
+            vacancies: List<VacancyEntity>.from(oldVacancies)
+              ..addAll(vacancies)));
+        oldVacancies.addAll(vacancies);
+        isLastPage = vacancies.length < limit;
+      });
+      page++;
+      isLoading = false;
+    }
   }
 }

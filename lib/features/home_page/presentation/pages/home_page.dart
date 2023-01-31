@@ -17,9 +17,20 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final cubit = getIt<HomePageCubit>();
 
+  final _scrollController = ScrollController();
+
   @override
   void initState() {
     cubit.fetchVacancies();
+
+    Future.delayed(Duration.zero, () {
+      _scrollController.addListener(() async {
+        if (_scrollController.position.pixels ==
+            _scrollController.position.maxScrollExtent) {
+          await cubit.fetchVacancies();
+        }
+      });
+    });
     super.initState();
   }
 
@@ -34,16 +45,30 @@ class _HomePageState extends State<HomePage> {
                 child: CircularProgressIndicator(),
               );
             } else if (state is VacanciesLoadedState) {
-              return ListView.separated(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 25),
-                  itemCount: state.vacancies.length,
-                  separatorBuilder: (context, index) => const CustomSizedBox(
-                        height: 8,
-                      ),
-                  itemBuilder: (context, index) => VacancyCard(
-                        vacancy: state.vacancies[index],
-                      ));
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    ListView.separated(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        controller: _scrollController,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 25),
+                        itemCount: state.vacancies.length,
+                        separatorBuilder: (context, index) =>
+                            const CustomSizedBox(
+                              height: 8,
+                            ),
+                        itemBuilder: (context, index) => VacancyCard(
+                              isReviwed: false,
+                              vacancy: state.vacancies[index],
+                            )),
+                    cubit.isLastPage
+                        ? const SizedBox()
+                        : const CircularProgressIndicator()
+                  ],
+                ),
+              );
             } else {
               return const Center(
                 child: Text("Error"),
