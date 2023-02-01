@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:poisk_raboty/core/widgets/custom_sized_box.dart';
-import 'package:poisk_raboty/features/home_page/presentation/cubit/home_page_cubit.dart';
 
+import '../../../../core/widgets/my_sliver_app_bar.dart';
 import '../../../../setup.dart';
+import '../cubit/home_page_cubit.dart';
 import '../cubit/home_page_state.dart';
-import '../widgets/vacancy_card.dart';
+import '../widgets/vacancies.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -23,15 +23,14 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     cubit.fetchVacancies();
 
-    Future.delayed(Duration.zero, () {
-      _scrollController.addListener(() async {
-        if (_scrollController.position.pixels ==
-            _scrollController.position.maxScrollExtent) {
-          await cubit.fetchVacancies();
-        }
-      });
-    });
     super.initState();
+
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        cubit.fetchVacancies();
+      }
+    });
   }
 
   @override
@@ -45,29 +44,12 @@ class _HomePageState extends State<HomePage> {
                 child: CircularProgressIndicator(),
               );
             } else if (state is VacanciesLoadedState) {
-              return SingleChildScrollView(
-                child: Column(
-                  children: [
-                    ListView.separated(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        controller: _scrollController,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 25),
-                        itemCount: state.vacancies.length,
-                        separatorBuilder: (context, index) =>
-                            const CustomSizedBox(
-                              height: 8,
-                            ),
-                        itemBuilder: (context, index) => VacancyCard(
-                              isReviwed: false,
-                              vacancy: state.vacancies[index],
-                            )),
-                    cubit.isLastPage
-                        ? const SizedBox()
-                        : const CircularProgressIndicator()
-                  ],
-                ),
+              return CustomScrollView(
+                controller: _scrollController,
+                slivers: [
+                  const MySliverAppBar(),
+                  Vacancies(state: state),
+                ],
               );
             } else {
               return const Center(

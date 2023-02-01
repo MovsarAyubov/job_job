@@ -2,12 +2,18 @@ import 'package:poisk_raboty/features/home_page/domain/entities/vacancy_entity.d
 
 class VacancyModel extends VacancyEntity {
   const VacancyModel(
-      {required String title,
+      {required String link,
+      required int id,
+      bool isReviewed = false,
+      required String title,
       required String salary,
       required String address,
       required String description,
       required String company})
       : super(
+            link: link,
+            id: id,
+            isReviewed: isReviewed,
             title: title,
             salary: salary,
             company: company,
@@ -16,6 +22,9 @@ class VacancyModel extends VacancyEntity {
 
   factory VacancyModel.fromJson(Map<String, dynamic> json) {
     return VacancyModel(
+      link: json['link'] as String,
+      id: json['id'] as int,
+      isReviewed: json['isReviewed'] as bool,
       title: json['title'] as String,
       salary: json['salary'] as String,
       company: json['company'] as String,
@@ -25,6 +34,9 @@ class VacancyModel extends VacancyEntity {
   }
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
+      'link': link,
+      'id': id,
+      'isReviewed': isReviewed,
       'title': title,
       'salary': salary,
       'description': description,
