@@ -22,6 +22,9 @@ class HomePageCubit extends Cubit<HomePageState> {
   List<VacancyEntity> oldVacancies = [];
 
   Future<void> fetchVacancies() async {
+    if (_page == 0) {
+      emit(HomeInitital());
+    }
     if (!_isLastPage && !_isLoading) {
       _isLoading = true;
       final response = await useCase.call(page: _page);

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:poisk_raboty/core/app_colors.dart';
+import 'package:poisk_raboty/core/widgets/error_widget.dart';
 
-import '../../../../core/widgets/my_sliver_app_bar.dart';
+import '../widgets/my_sliver_app_bar.dart';
 import '../../../../setup.dart';
 import '../cubit/home_page_cubit.dart';
 import '../cubit/home_page_state.dart';
@@ -14,7 +16,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with AutomaticKeepAliveClientMixin {
   final cubit = getIt<HomePageCubit>();
 
   final _scrollController = ScrollController();
@@ -35,13 +38,16 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: BlocBuilder<HomePageCubit, HomePageState>(
           bloc: cubit,
           builder: (context, state) {
             if (state is HomeInitital) {
               return const Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  color: appMainColor,
+                ),
               );
             } else if (state is VacanciesLoadedState) {
               return CustomScrollView(
@@ -52,11 +58,16 @@ class _HomePageState extends State<HomePage> {
                 ],
               );
             } else {
-              return const Center(
-                child: Text("Error"),
+              return Center(
+                child: InternetErrorWidget(callback: () async {
+                  await cubit.fetchVacancies();
+                }),
               );
             }
           }),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

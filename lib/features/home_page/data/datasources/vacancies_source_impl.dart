@@ -8,6 +8,7 @@ import 'package:poisk_raboty/features/home_page/data/models/vacancy_model.dart';
 
 import '../../../../core/api/urls.dart';
 import '../../../../core/exceptions/server_exeption.dart';
+import '../../../concrete_vacancy/domain/entities/contacts_entity.dart';
 
 @LazySingleton(as: VacanciesSource)
 class VacanciesSourceImpl extends VacanciesSource {

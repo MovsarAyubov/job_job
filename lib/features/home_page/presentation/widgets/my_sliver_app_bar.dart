@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:poisk_raboty/core/app_colors.dart';
 
-import '../../l10n/l10n.dart';
-import 'custom_sized_box.dart';
-import 'roboto_text.dart';
-import 'size_config.dart';
+import '../../../../l10n/l10n.dart';
+import '../../../../core/widgets/custom_sized_box.dart';
+import '../../../../core/widgets/roboto_text.dart';
+import '../../../../core/widgets/size_config.dart';
 
 class MySliverAppBar extends StatelessWidget {
   const MySliverAppBar({super.key});
@@ -12,7 +13,7 @@ class MySliverAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverAppBar(
       floating: true,
-      backgroundColor: Colors.white,
+      backgroundColor: appMainColor,
       expandedHeight: SizeConfig(context, 60)(),
       title: InkWell(
         onTap: () {},
@@ -22,12 +23,15 @@ class MySliverAppBar extends StatelessWidget {
           children: [
             const Icon(
               Icons.search,
-              color: Colors.black,
+              color: Colors.white,
+              size: 28,
             ),
-            const CustomSizedBox(
-              width: 5,
-            ),
-            RobotoText(localizationInstance.appTitle)
+            const CustomSizedBox(width: 5),
+            RobotoText(
+              localizationInstance.appTitle,
+              color: Colors.white,
+              fontSize: 18,
+            )
           ],
         ),
       ),

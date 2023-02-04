@@ -7,7 +7,7 @@ import 'package:poisk_raboty/features/home_page/domain/entities/vacancy_entity.d
 import 'package:poisk_raboty/features/home_page/domain/repositories/vacancy_repository.dart';
 
 @LazySingleton(as: VacancyRepository)
-class VacanciesRepasitoryImpl extends VacancyRepository {
+class VacanciesRepasitoryImpl implements VacancyRepository {
   final VacanciesSource source;
   VacanciesRepasitoryImpl({
     required this.source,
@@ -26,4 +26,7 @@ class VacanciesRepasitoryImpl extends VacancyRepository {
 
   @override
   List<Object?> get props => [];
+
+  @override
+  bool? get stringify => throw UnimplementedError();
 }

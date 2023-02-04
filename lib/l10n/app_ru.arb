@@ -1,4 +1,46 @@
 {
     "appTitle" : "Настройка поиска",
-    "vacanciesForYou" : "Все вакансии"
+    "vacanciesForYou" : "Все вакансии",
+    "response" : "Откликнуться",
+    "contacts" : "Контактная информация",
+    "tryAgain" : "Повторить попытку",
+    "noInternet" : "Нет подключения к интернету",
+
+    "search" : "Поиск",
+    "favorites" : "Избранное",
+    "profile" : "Профиль",
+
+    "noFavorites" : "Нет избранных вакансий",
+    
+    "fieldIsEmpty" : "Поле не может быть пустым",
+    "unauthorizedCharacters" : "Использованы не разрешенные знаки",
+    "minLengthError" : "Пароль должен иметь не менее 6 символов",
+
+    "userNameTaken" : "Имя пользователя занято, выберите другой",
+    "successReg" : "Регистрация прошла успешно",
+    "successSignIn" : "Вход выполнен",
+    "incorrectData" : "Неправильное имя пользователя или пароль",
+
+    "userName" : "Имя пользователя",
+    "password" : "Пароль",
+    "signIn" : "Войти",
+    "signUp" : "Создать",
+    "haveAnAccount" : "Уже зарегистрировались?",
+    "haveNotAccount" : "Нет аккаунта?",
+
+    "authScreenText1" : "Добро пожаловать",
+    "authScreenText2" : "в наш сервис!",
+    "exit" : "Выйти из аккаунта",
+    "exitMessage" : "Вы хотите выйти из системы?",
+    "cancel" : "Отмена",
+
+    "isNotInSystem" : "Вы не вошли в систему",
+
+    "phoneNumber" : "Телефон:",
+    "email" : "E-mail:",
+
+    "addEmail" : "Добавьте email",
+    "addPhoneNumber" : "Добавьте номер телефона",
+    "aboutUser" : "О вас"
+    
 }

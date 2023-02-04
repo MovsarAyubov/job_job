@@ -20,15 +20,16 @@ class FavoriteVacancyState extends Equatable {
   }
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'favorites': favorites.map((x) => x.toMap()).toList(),
-    };
+    final result = <String, dynamic>{};
+
+    result.addAll({'favorites': favorites.map((e) => e.toMap()).toList()});
+    return result;
   }
 
   factory FavoriteVacancyState.fromMap(Map<String, dynamic> map) {
     return FavoriteVacancyState(
       favorites: List<VacancyEntity>.from(
-          map['favoriteProducts']?.map((x) => VacancyEntity.fromMap(x))),
+          map['favorites']?.map((x) => VacancyEntity.fromMap(x))),
     );
   }
 
