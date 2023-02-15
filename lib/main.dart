@@ -6,7 +6,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'app.dart';
-import 'features/splash_screen/presentation/pages/splash_screen.dart';
+import 'features/main_page/presentation/pages/main_page.dart';
 import 'l10n/l10n.dart';
 import 'setup.dart';
 
@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SplashScreen(),
+      home: const MainPage(),
     );
   }
 }

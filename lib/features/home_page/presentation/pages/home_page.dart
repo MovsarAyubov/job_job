@@ -26,6 +26,8 @@ class _HomePageState extends State<HomePage>
 
   @override
   void initState() {
+    cubit.fetchVacancies(page: cubit.page, job: '');
+
     super.initState();
 
     _scrollController.addListener(() {

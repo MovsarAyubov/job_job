@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:poisk_raboty/core/widgets/roboto_text.dart';
 import '../../../../core/app_colors.dart';
 
 import '../../../../core/widgets/size_config.dart';

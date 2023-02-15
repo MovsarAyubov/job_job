@@ -7,7 +7,6 @@ import 'package:poisk_raboty/features/concrete_vacancy/data/datasources/detailed
 import 'package:poisk_raboty/features/concrete_vacancy/data/models/detailed_vacancy_model.dart';
 
 import '../../../../core/exceptions/server_exeption.dart';
-import '../../../../l10n/l10n.dart';
 import '../../domain/entities/contacts_entity.dart';
 
 @LazySingleton(as: ConcreteVacancySource)
@@ -46,13 +45,13 @@ class ConcreteVacancySourceImpl implements ConcreteVacancySource {
                   )
                   ?.text ??
               vacancy?.find('p', class_: 'vacancy-view-location')?.text ??
-              localizationInstance.lackOfInformation,
+              'no item',
           title: vacancy
                   ?.find('h1',
                       class_: 'bloko-header-section-1',
                       selector: 'div > div.vacancy-title > h1')
                   ?.text ??
-              localizationInstance.lackOfInformation,
+              'no item',
           price: vacancy
                   ?.find(
                     'span',
@@ -60,24 +59,24 @@ class ConcreteVacancySourceImpl implements ConcreteVacancySource {
                         'bloko-header-section-2 bloko-header-section-2_lite',
                   )
                   ?.text ??
-              localizationInstance.lackOfInformation,
+              'no item',
           workExperience: vacancy
                   ?.find(
                     'p',
                     class_: 'vacancy-description-list-item',
                   )
                   ?.text ??
-              localizationInstance.lackOfInformation,
+              'no item',
           dayEmployment: vacancy
                   ?.find('p',
                       class_: 'vacancy-description-list-item',
                       selector: 'div > p:nth-child(3)')
                   ?.text ??
-              localizationInstance.lackOfInformation,
+              'no item',
           vacancyViews: '',
           company:
               vacancy?.find('span', class_: 'vacancy-company-name')?.text ??
-                  localizationInstance.lackOfInformation,
+                  'no item',
           description: getDescription(userContent),
           contacts: Contacts.getContacts());
     } catch (e) {
