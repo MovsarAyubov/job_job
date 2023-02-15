@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:poisk_raboty/core/app_colors.dart';
+import 'package:poisk_raboty/features/auth_page/presentation/pages/auth_page.dart';
 
 import '../../../../core/widgets/custom_sized_box.dart';
 import '../../../../core/widgets/roboto_text.dart';
@@ -43,6 +45,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         localizationInstance.aboutUser,
                         fontSize: 16,
                       ),
+                      const CustomSizedBox(height: 5),
                       PersonCard(
                         account: state.accountInSystem,
                       ),
@@ -58,9 +61,27 @@ class _ProfilePageState extends State<ProfilePage> {
                 );
               } else {
                 return Center(
-                  child: RobotoText(
-                    localizationInstance.isNotInSystem,
-                    fontSize: 18,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      RobotoText(
+                        localizationInstance.isNotInSystem,
+                        fontSize: 18,
+                      ),
+                      ElevatedButton(
+                          style: const ButtonStyle(
+                              backgroundColor:
+                                  MaterialStatePropertyAll(appMainColor)),
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const AuthPage(),
+                            ));
+                          },
+                          child: RobotoText(
+                            localizationInstance.auth,
+                            color: Colors.white,
+                          ))
+                    ],
                   ),
                 );
               }

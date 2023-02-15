@@ -6,5 +6,8 @@ import '../entities/vacancy_entity.dart';
 
 abstract class VacancyRepository extends Equatable {
   Future<Either<Failure, List<VacancyEntity>>> fetchVacancies(
-      {required num page});
+      {required num page,
+      required double salary,
+      required int area,
+      required String job});
 }

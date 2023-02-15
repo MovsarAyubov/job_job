@@ -6,7 +6,7 @@ import 'package:poisk_raboty/features/home_page/domain/entities/vacancy_entity.d
 import '../../domain/usecases/fetch_vacancies.dart';
 import 'home_page_state.dart';
 
-@Injectable()
+@LazySingleton()
 class HomePageCubit extends Cubit<HomePageState> {
   final FetchVacancies useCase;
   HomePageCubit(
@@ -14,6 +14,7 @@ class HomePageCubit extends Cubit<HomePageState> {
   ) : super(HomeInitital());
 
   bool get isLastPage => _isLastPage;
+  int get page => _page;
 
   int _page = 0;
   final int _limit = 20;
@@ -21,13 +22,18 @@ class HomePageCubit extends Cubit<HomePageState> {
   bool _isLoading = false;
   List<VacancyEntity> oldVacancies = [];
 
-  Future<void> fetchVacancies() async {
+  Future<void> fetchVacancies(
+      {int page = 0,
+      double salary = 0,
+      int area = 113,
+      String job = ""}) async {
     if (_page == 0) {
       emit(HomeInitital());
     }
     if (!_isLastPage && !_isLoading) {
       _isLoading = true;
-      final response = await useCase.call(page: _page);
+      final response =
+          await useCase.call(page: _page, job: job, area: area, salary: salary);
       response.fold((error) => emit(const ErrorState(errorMessage: "error")),
           (vacancies) {
         emit(VacanciesLoadedState(
@@ -39,5 +45,15 @@ class HomePageCubit extends Cubit<HomePageState> {
       _page++;
       _isLoading = false;
     }
+  }
+
+  void deletePreviousDataAndDownloadNewOnes(
+      {double salary = 0, int area = 1, String job = ""}) async {
+    emit(const VacanciesLoadedState(vacancies: []));
+    oldVacancies = [];
+    _page = 0;
+    _isLastPage = false;
+    _isLoading = false;
+    await fetchVacancies(page: page, job: job, salary: salary, area: area);
   }
 }

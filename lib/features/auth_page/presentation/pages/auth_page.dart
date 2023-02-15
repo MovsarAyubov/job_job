@@ -51,7 +51,7 @@ class _AuthPageState extends State<AuthPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: TitleAppBar(
-        title: localizationInstance.profile,
+        title: localizationInstance.auth,
         appBarHeight: SizeConfig(context, 60)(),
       ),
       body: SingleChildScrollView(
@@ -96,6 +96,9 @@ class _AuthPageState extends State<AuthPage> {
                             const SizedBox(),
                             Expanded(
                               child: ElevatedButton(
+                                  style: const ButtonStyle(
+                                      backgroundColor: MaterialStatePropertyAll(
+                                          appMainColor)),
                                   onPressed: () {
                                     if (formKey.currentState?.validate() !=
                                         true) {

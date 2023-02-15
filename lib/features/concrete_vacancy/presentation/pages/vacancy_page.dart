@@ -9,7 +9,6 @@ import 'package:poisk_raboty/features/concrete_vacancy/presentation/widgets/simp
 import 'package:poisk_raboty/features/concrete_vacancy/presentation/widgets/vacancy.dart';
 import 'package:poisk_raboty/features/home_page/domain/entities/vacancy_entity.dart';
 
-import '../../../../core/widgets/roboto_text.dart';
 import '../../../../setup.dart';
 import '../cubit/concrete_vacancy_cubit.dart';
 import '../cubit/concrete_vacancy_state.dart';

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:poisk_raboty/core/app_colors.dart';
+import 'package:poisk_raboty/core/widgets/roboto_text.dart';
+import '../../../../core/app_colors.dart';
 
-import '../../../../l10n/l10n.dart';
-import '../../../../core/widgets/custom_sized_box.dart';
-import '../../../../core/widgets/roboto_text.dart';
 import '../../../../core/widgets/size_config.dart';
+import '../../../search_setting_page/presentation/pages/search_page.dart';
 
 class MySliverAppBar extends StatelessWidget {
   const MySliverAppBar({super.key});
@@ -12,29 +11,27 @@ class MySliverAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      centerTitle: true,
       floating: true,
       backgroundColor: appMainColor,
       expandedHeight: SizeConfig(context, 60)(),
-      title: InkWell(
-        onTap: () {},
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            const Icon(
-              Icons.search,
-              color: Colors.white,
-              size: 28,
-            ),
-            const CustomSizedBox(width: 5),
-            RobotoText(
-              localizationInstance.appTitle,
-              color: Colors.white,
-              fontSize: 18,
-            )
-          ],
+      title: const Text(
+        "JobJob",
+        style: TextStyle(
+          fontSize: 26,
+          fontFamily: "Playfair",
         ),
       ),
+      actions: [
+        IconButton(
+            iconSize: 34,
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const SearchPage(),
+              ));
+            },
+            icon: const Icon(Icons.manage_search_outlined))
+      ],
     );
   }
 }

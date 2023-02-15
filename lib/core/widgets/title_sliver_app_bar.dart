@@ -10,19 +10,20 @@ class TitleAppBar extends StatelessWidget with PreferredSizeWidget {
   final String title;
   const TitleAppBar({
     Key? key,
-    this.appBarHeight = 0.0,
+    required this.appBarHeight,
     required this.title,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Center(
-          child: RobotoText(
+      centerTitle: true,
+      title: RobotoText(
         title,
         fontSize: 18,
         color: Colors.white,
-      )),
+        fontWeight: FontWeight.bold,
+      ),
       backgroundColor: appMainColor,
     );
   }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:poisk_raboty/core/app_colors.dart';
 import 'package:poisk_raboty/core/widgets/error_widget.dart';
+import 'package:poisk_raboty/core/widgets/roboto_text.dart';
+import 'package:poisk_raboty/l10n/l10n.dart';
 
 import '../widgets/my_sliver_app_bar.dart';
 import '../../../../setup.dart';
@@ -24,14 +26,12 @@ class _HomePageState extends State<HomePage>
 
   @override
   void initState() {
-    cubit.fetchVacancies();
-
     super.initState();
 
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
-        cubit.fetchVacancies();
+        cubit.fetchVacancies(page: cubit.page, job: '');
       }
     });
   }
@@ -50,17 +50,22 @@ class _HomePageState extends State<HomePage>
                 ),
               );
             } else if (state is VacanciesLoadedState) {
-              return CustomScrollView(
-                controller: _scrollController,
-                slivers: [
-                  const MySliverAppBar(),
-                  Vacancies(state: state),
-                ],
-              );
+              if (state.vacancies.isEmpty) {
+                return Center(
+                    child: RobotoText(localizationInstance.vacanciesNotFound));
+              } else {
+                return CustomScrollView(
+                  controller: _scrollController,
+                  slivers: [
+                    const MySliverAppBar(),
+                    Vacancies(state: state),
+                  ],
+                );
+              }
             } else {
               return Center(
                 child: InternetErrorWidget(callback: () async {
-                  await cubit.fetchVacancies();
+                  await cubit.fetchVacancies(page: cubit.page);
                 }),
               );
             }

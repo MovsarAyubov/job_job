@@ -29,6 +29,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  animated_splash_screen: ^1.3.0
   beautiful_soup_dart: ^0.3.0
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
@@ -46,8 +47,10 @@ dependencies:
   injectable: ^2.1.0
   json_annotation: ^4.8.0
   json_serializable: ^6.6.0
+  page_transition: ^2.0.9
   path_provider: ^2.0.12
   retrofit: ^3.3.1
+  splashscreen: ^1.3.5
   web_scraper: ^0.1.4
 
 dev_dependencies:
@@ -69,8 +72,8 @@ flutter:
   uses-material-design: true
   generate: true
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/images/
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -86,8 +89,9 @@ flutter:
       fonts:
         - asset: assets/fonts/Roboto-Regular.ttf
           style: normal
-        - asset: assets/fonts/Roboto-Black.ttf
-          style: italic
+    - family: Playfair
+      fonts:
+        - asset: assets/fonts/Playfair Display.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:

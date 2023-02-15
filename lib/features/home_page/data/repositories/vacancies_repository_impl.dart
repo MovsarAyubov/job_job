@@ -15,9 +15,13 @@ class VacanciesRepasitoryImpl implements VacancyRepository {
 
   @override
   Future<Either<Failure, List<VacancyEntity>>> fetchVacancies(
-      {required page}) async {
+      {required num page,
+      required double salary,
+      required int area,
+      required String job}) async {
     try {
-      final listOfVacancies = await source.fetchListOfVacancies(page: page);
+      final listOfVacancies = await source.fetchListOfVacancies(
+          page: page, salary: salary, job: job, area: area);
       return Right(listOfVacancies);
     } catch (e) {
       return const Left(FailureSimulation());

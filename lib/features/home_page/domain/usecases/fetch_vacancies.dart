@@ -11,7 +11,12 @@ class FetchVacancies {
   const FetchVacancies({
     required this.repository,
   });
-  Future<Either<Failure, List<VacancyEntity>>> call({required num page}) {
-    return repository.fetchVacancies(page: page);
+  Future<Either<Failure, List<VacancyEntity>>> call(
+      {required num page,
+      required double salary,
+      required int area,
+      required String job}) {
+    return repository.fetchVacancies(
+        page: page, salary: salary, area: area, job: job);
   }
 }

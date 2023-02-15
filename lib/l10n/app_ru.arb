@@ -9,6 +9,7 @@
     "search" : "Поиск",
     "favorites" : "Избранное",
     "profile" : "Профиль",
+    "auth" : "Авторизация",
 
     "noFavorites" : "Нет избранных вакансий",
     
@@ -34,13 +35,23 @@
     "exitMessage" : "Вы хотите выйти из системы?",
     "cancel" : "Отмена",
 
-    "isNotInSystem" : "Вы не вошли в систему",
+    "isNotInSystem" : "Вы не авторизованы",
 
     "phoneNumber" : "Телефон:",
     "email" : "E-mail:",
 
     "addEmail" : "Добавьте email",
     "addPhoneNumber" : "Добавьте номер телефона",
-    "aboutUser" : "О вас"
+    "aboutUser" : "О вас",
     
+    "searchPage" : "Фильтр",
+
+    "jobSearchByName" : "Введите название профессии", 
+    
+    "preferredSalary" : "Уровень дохода",
+    "area" : "Регион",
+
+    "vacanciesNotFound" : "Вакансии по вашему запросу не найдены",
+
+    "lackOfInformation" : "Нет информации"
 }

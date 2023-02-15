@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:poisk_raboty/main.dart';
 
 import '../../../../core/cubits/favorites_cached/favorits_cubit.dart';
 import '../../../../core/cubits/favorites_cached/favorits_state.dart';
