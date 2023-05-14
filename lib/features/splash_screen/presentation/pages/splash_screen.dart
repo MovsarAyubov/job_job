@@ -1,6 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:poisk_raboty/features/call_page/presentation/pages/call_page.dart';
 import '../../../../core/app_colors.dart';
 import '../../../../core/widgets/size_config.dart';
 import '../../../home_page/presentation/cubit/home_page_cubit.dart';
@@ -45,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
         ),
       ),
-      nextScreen: const MainPage(),
+      nextScreen: const CallPage(),
     );
   }
 }
