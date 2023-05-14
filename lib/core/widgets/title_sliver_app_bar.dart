@@ -5,7 +5,7 @@ import 'package:poisk_raboty/core/widgets/roboto_text.dart';
 
 import '../app_colors.dart';
 
-class TitleAppBar extends StatelessWidget with PreferredSizeWidget {
+class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double appBarHeight;
   final String title;
   const TitleAppBar({
