@@ -45,11 +45,11 @@ class _HomePageState extends State<HomePage>
       body: BlocBuilder<HomePageCubit, HomePageState>(
           bloc: cubit,
           builder: (context, state) {
-            if (state is HomeInitital) {
-              return const Center(
-                child: CircularProgressIndicator(
-                  color: appMainColor,
-                ),
+            if (state is ErrorState) {
+              return Center(
+                child: InternetErrorWidget(callback: () async {
+                  await cubit.fetchVacancies(page: cubit.page);
+                }),
               );
             } else if (state is VacanciesLoadedState) {
               if (state.vacancies.isEmpty) {
@@ -65,10 +65,10 @@ class _HomePageState extends State<HomePage>
                 );
               }
             } else {
-              return Center(
-                child: InternetErrorWidget(callback: () async {
-                  await cubit.fetchVacancies(page: cubit.page);
-                }),
+              return const Center(
+                child: CircularProgressIndicator(
+                  color: appMainColor,
+                ),
               );
             }
           }),

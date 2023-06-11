@@ -32,16 +32,15 @@ class _SplashScreenState extends State<SplashScreen> {
       backgroundColor: appMainColor,
       duration: 1500,
       splash: CustomSizedBox(
-        width: 140,
+        width: 230,
         child: Container(
           alignment: Alignment.center,
           decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.all(Radius.circular(100))),
           child: Text(
-            "JobJob",
-            style: TextStyle(
-                fontFamily: "Playfair", fontSize: SizeConfig(context, 32)()),
+            "Город работ",
+            style: TextStyle(fontSize: SizeConfig(context, 32)()),
           ),
         ),
       ),

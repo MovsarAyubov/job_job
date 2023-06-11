@@ -8,6 +8,7 @@ import 'package:poisk_raboty/features/auth_page/presentation/cubit/account_in_sy
 import 'package:poisk_raboty/features/concrete_vacancy/presentation/widgets/simple_sliver_app_bar.dart';
 import 'package:poisk_raboty/features/concrete_vacancy/presentation/widgets/vacancy.dart';
 import 'package:poisk_raboty/features/home_page/domain/entities/vacancy_entity.dart';
+import 'package:poisk_raboty/features/response_page/presentation/cubit/responses_cubit.dart';
 
 import '../../../../setup.dart';
 import '../cubit/concrete_vacancy_cubit.dart';
@@ -28,6 +29,7 @@ class _VacancyPageState extends State<VacancyPage> {
   final cubit = getIt<ConcreteVacancyCubit>();
   final favoritesCubit = getIt<FavoriteVacancyCubit>();
   final accountInSystemCubit = getIt<AccountInSystemCubit>();
+  final responsesCubit = getIt<ResponsesCubit>();
 
   @override
   void initState() {
@@ -46,6 +48,8 @@ class _VacancyPageState extends State<VacancyPage> {
           return CustomScrollView(slivers: [
             SimpleSliverAppBar(vacancy: widget.vacancy, cubit: favoritesCubit),
             Vacancy(
+              responsesCubit: responsesCubit,
+              vacancy: widget.vacancy,
               concreteVacancy: state.concreteVacancy,
               cubit: accountInSystemCubit,
             )

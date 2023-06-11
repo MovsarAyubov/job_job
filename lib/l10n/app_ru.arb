@@ -53,5 +53,10 @@
 
     "vacanciesNotFound" : "Вакансии по вашему запросу не найдены",
 
-    "lackOfInformation" : "Нет информации"
+    "lackOfInformation" : "Нет информации",
+    "responsePage" : "Отклики",
+    "resumeSended" : "Вы откликались",
+    "noResponses" : "Вы пока не откликались на вакансии",
+    "goToChat" : "Перейти в чат"
+
 }

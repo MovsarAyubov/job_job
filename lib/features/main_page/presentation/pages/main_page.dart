@@ -6,6 +6,7 @@ import '../../../../l10n/l10n.dart';
 import '../../../favorites_page/presentation/pages/favorites_page.dart';
 import '../../../home_page/presentation/pages/home_page.dart';
 import '../../../profile_page/presentation/pages/profile_page.dart';
+import '../../../response_page/presentation/pages/responses_page.dart';
 import '../cubit/main_page_cubit.dart';
 
 class MainPage extends StatefulWidget {
@@ -22,6 +23,7 @@ class _MainPageState extends State<MainPage> {
   final screens = <Widget>[
     const HomePage(),
     const FavoritesPage(),
+    const ReponsesPage(),
     const ProfilePage(),
   ];
 
@@ -37,6 +39,8 @@ class _MainPageState extends State<MainPage> {
               children: screens,
             ),
             bottomNavigationBar: BottomNavigationBar(
+              unselectedItemColor: Colors.grey,
+              showUnselectedLabels: true,
               selectedIconTheme:
                   const IconThemeData(size: 30, color: appMainColor),
               unselectedIconTheme: const IconThemeData(size: 22),
@@ -56,6 +60,9 @@ class _MainPageState extends State<MainPage> {
                 BottomNavigationBarItem(
                     icon: const Icon(Icons.favorite),
                     label: localizationInstance.favorites),
+                BottomNavigationBarItem(
+                    icon: const Icon(Icons.document_scanner_sharp),
+                    label: localizationInstance.responsePage),
                 BottomNavigationBarItem(
                     icon: const Icon(Icons.person),
                     label: localizationInstance.profile),

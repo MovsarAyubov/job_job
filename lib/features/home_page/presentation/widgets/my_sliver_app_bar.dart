@@ -15,10 +15,9 @@ class MySliverAppBar extends StatelessWidget {
       backgroundColor: appMainColor,
       expandedHeight: SizeConfig(context, 60)(),
       title: const Text(
-        "JobJob",
+        "Город работ",
         style: TextStyle(
           fontSize: 26,
-          fontFamily: "Playfair",
         ),
       ),
       actions: [

@@ -13,6 +13,7 @@ import '../../../auth_page/presentation/cubit/account_in_system_cubit.dart';
 import '../../../auth_page/presentation/cubit/account_in_system_state.dart';
 import '../widgets/person_card.dart';
 import '../widgets/profile_item.dart';
+import '../widgets/resume_widget.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -50,12 +51,13 @@ class _ProfilePageState extends State<ProfilePage> {
                         account: state.accountInSystem,
                       ),
                       const CustomSizedBox(height: 15),
+                      const ResumeWidget(),
                       ProfileItem(
                         callback: () {
                           cubit.exitFromSystem();
                         },
                         title: localizationInstance.exit,
-                      )
+                      ),
                     ],
                   ),
                 );
